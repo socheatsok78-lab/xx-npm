@@ -1,0 +1,25 @@
+#!/bin/sh
+
+XX_NPM=npm
+
+# NPM
+if [ -f ".npmrc" ] || [ -f "package-lock.json" ]; then
+    XX_NPM=npm
+fi
+
+# Yarn
+if [ -f ".yarnrc" ] || [ -f "yarn.lock" ] || [ -f "yarn-error.log" ]; then
+    XX_NPM=yarn
+fi
+
+# PNPM
+if [ -f ".pnpmfile.cjs" ] || [ -f "pnpm-workspace.yaml" ] || [ -f "pnpm-lock.yaml" ]; then
+    XX_NPM=pnpm
+fi
+
+# Run
+if [ "$(command -v $XX_NPM)" ]; then
+    exec $XX_NPM "$@"
+else
+    echo "fetal: command \"$XX_NPM\" exists on system"
+fi
