@@ -22,4 +22,5 @@ if [ "$(command -v $XX_NPM)" ]; then
     exec $XX_NPM "$@"
 else
     echo "fetal: command \"$XX_NPM\" exists on system"
+    exit 1
 fi
