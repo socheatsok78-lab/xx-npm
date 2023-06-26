@@ -1,8 +1,9 @@
 # xx-npm
-A helper CLI for running NPM command that support `npm`, `yarn` and `pnpm`
+A helper CLI that automatically detech the package manager used by your project.
+
+Support: `npm`, `yarn` and `pnpm`
 
 ## Dockerfile
-
 Using inside `Dockerfile`
 
 ```Dockerfile
