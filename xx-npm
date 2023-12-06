@@ -19,6 +19,9 @@ fi
 
 # Run
 if [ "$(command -v $XX_NPM)" ]; then
+    echo ""
+    echo "Detected $XX_NPM as package manager!"
+    echo ""
     exec $XX_NPM "$@"
 else
     echo "fetal: command \"$XX_NPM\" exists on system"
