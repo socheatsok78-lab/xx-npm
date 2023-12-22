@@ -13,7 +13,7 @@ if [ -f ".npmrc" ] || [ -f "package-lock.json" ]; then
 fi
 
 # Yarn
-if [ -f ".yarnrc" ] || [ -f "yarn.lock" ] || [ -f "yarn-error.log" ]; then
+if [ -f ".yarnrc" ] || [ -f "yarn.lock" ]; then
     XX_NPM=yarn
 fi
 
