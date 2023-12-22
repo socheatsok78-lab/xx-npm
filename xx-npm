@@ -1,6 +1,11 @@
 #!/bin/sh
+XX_NPM=
 
-XX_NPM=npm
+if [ ! -f "package.json" ]; then
+    echo "fetal: not a nodejs project"
+    echo
+    exit 1
+fi
 
 # NPM
 if [ -f ".npmrc" ] || [ -f "package-lock.json" ]; then
@@ -17,13 +22,12 @@ if [ -f ".pnpmfile.cjs" ] || [ -f "pnpm-workspace.yaml" ] || [ -f "pnpm-lock.yam
     XX_NPM=pnpm
 fi
 
-# Run
-if [ "$(command -v $XX_NPM)" ]; then
-    echo ""
-    echo "Detected $XX_NPM as package manager!"
-    echo ""
-    exec $XX_NPM "$@"
-else
+if [ ! "$(command -v $XX_NPM)" ]; then
     echo "fetal: command \"$XX_NPM\" exists on system"
     exit 1
 fi
+
+echo "xx-npm: using ${XX_NPM} as package manager"
+echo
+export XX_NPM
+exec ${XX_NPM} "$@"
